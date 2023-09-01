@@ -16,9 +16,9 @@ const Content = () => {
   ];
 
   return (
-    <div className="app">
+    <React.Fragment className="app">
+      <section className="product-list">
       <h1>Product List</h1>
-      <div className="product-list">
         {products.map((product, index) => (
           <Product
             key={index} 
@@ -27,8 +27,8 @@ const Content = () => {
             image={product.image}
           />
         ))}
-      </div>
-    </div>
+      </section>
+    </React.Fragment>
   );
 };
 
