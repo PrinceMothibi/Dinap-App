@@ -24,14 +24,27 @@
   color: white;
 }
 
+div {
+  background-color: white;
+  align-items: center;
+  margin: auto;
+}
+
+Router .center {
+  margin: auto;
+  text-align: center;
+
+}
+
 .App-link {
-  color: #61dafb;
+  color: #ffaf0e;
 }
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
