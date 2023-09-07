@@ -6,12 +6,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Footer from './footer/Footer';
 import Header from './header/Header'
+import { Authenticator } from '@aws-amplify/ui-react';
 
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 ReactDOM.render(
   <React.StrictMode>
+    <Authenticator.Provider>
     <App />
+    </Authenticator.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
