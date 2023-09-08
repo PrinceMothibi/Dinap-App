@@ -1,4 +1,4 @@
-// import './App.css';
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./header/page_navigator/NavBar";
 import About from "./page/About";
@@ -7,45 +7,33 @@ import Shop from "./page/Shop";
 import Footer from "./footer/Footer";
 import Home from "./page/Home.js";
 import Account from "./page/Account.js";
-import { I18n } from "aws-amplify";
-import {
-  Authenticator,
-  Button,
-  Flex,
-  Heading,
-  useAuthenticator,
-  useTheme,
-  View,
-  UseAuthenticator,
-} from "@aws-amplify/ui-react";
-import { Amplify, Auth } from "aws-amplify";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { Amplify } from "aws-amplify";
 import awsconfig from "./aws-exports";
 import "@aws-amplify/ui-react/styles.css";
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Layout } from "./layout";
+import { RequireAuth } from "./RequireAuth";
 
 function App() {
+  // Used to connect to aws Amplify which handles authentication.
   Amplify.configure(awsconfig);
-  // const location = useLocation();
 
   const { route } = useAuthenticator((context) => [context.route]);
   console.log(route);
 
-  const [path, setPath] = useState(false);
-  useEffect(() => {
-    setPath(true);
-    console.log(window.location.pathname);
-  }, [route]);
-
   return (
     <Router>
       <div class="page_layout">
+        <Navbar />
+          <Routes>
+            <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
+            <Route path="/shop" element={<RequireAuth><Shop /></RequireAuth>} />
+          </Routes>
         <Routes>
-          
-          <Route path="/" element={<Layout />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/brands" element={<RequireAuth><Brands /></RequireAuth>} />
+          <Route path="/about" element={<About />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
