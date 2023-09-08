@@ -16,9 +16,6 @@ amplifyconfiguration.dart
 amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
-node_modules/.cache/
 .secret-*
 **.sample
-node_modules
 #amplify-do-not-edit-end
-
