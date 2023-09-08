@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Footer from './footer/Footer';
-import Header from './header/Header'
 import { Authenticator } from '@aws-amplify/ui-react';
 
 

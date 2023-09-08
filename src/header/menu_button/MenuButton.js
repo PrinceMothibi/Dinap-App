@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MenuButton = ({}) => {
+const MenuButton = () => {
   return (
     <nav>
       <ul>
