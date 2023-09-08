@@ -3,9 +3,12 @@ import { useEffect } from "react";
 import { Authenticator, useAuthenticator, View } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { useNavigate, useLocation } from 'react-router';
+import awsconfig from "./aws-exports";
+import { Amplify } from "aws-amplify";
 
 
 export default function Login() {
+  Amplify.configure(awsconfig);
   const { route } = useAuthenticator((context) => [context.route]);
   const location = useLocation();
   const navigate = useNavigate();
