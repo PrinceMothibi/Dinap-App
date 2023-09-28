@@ -1,13 +1,11 @@
 import React from "react";
-import LoginPage from "./account-pages/Login";
-import LogoutPage from "./account-pages/Logout";
+import AccountNavigator from "./account-pages/AccountNavigator";
 
 const Account = () => {
   return (
     <React.Fragment>
       <div>
-        <LoginPage />
-        <LogoutPage />
+        <AccountNavigator/>
       </div>
     </React.Fragment>
   );

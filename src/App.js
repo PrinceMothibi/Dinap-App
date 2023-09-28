@@ -8,54 +8,62 @@ import Footer from "./footer/Footer";
 import Home from "./page/Home.js";
 import Account from "./page/Account.js";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-// import { Amplify } from "aws-amplify";
-import awsconfig from "./aws-exports";
 import "@aws-amplify/ui-react/styles.css";
 import { RequireAuth } from "./RequireAuth";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import Stack from "@mui/material/Stack";
+import Container from "@mui/material/Container";
+import Item from "./Item";
 
 function App() {
-  // Used to connect to aws Amplify which handles authentication.
-  // Amplify.configure(awsconfig);
-
   const { route } = useAuthenticator((context) => [context.route]);
   console.log(route);
 
   return (
     <Router>
-      <div class="page_layout">
-        <Navbar />
-        <Routes>
-          <Route
-            path="/account"
-            element={
-              <RequireAuth>
-                <Account />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/shop"
-            element={
-              <RequireAuth>
-                <Shop />
-              </RequireAuth>
-            }
-          />
-        </Routes>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route
-            path="/brands"
-            element={
-              <RequireAuth>
-                <Brands />
-              </RequireAuth>
-            }
-          />
-          <Route path="/about" element={<About />} />
-        </Routes>
-        <Footer />
-      </div>
+      <Container maxWidth="200vh" maxHeight="100vh">
+        <Stack spacing={1}>
+          <Item>
+            <Navbar />
+          </Item>
+          <Item>
+            <Routes>
+              <Route
+                path="/account"
+                element={
+                  <RequireAuth>
+                    <Account />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/shop"
+                element={
+                  <RequireAuth>
+                    <Shop />
+                  </RequireAuth>
+                }
+              />
+              <Route exact path="/" element={<Home />} />
+              <Route
+                path="/brands"
+                element={
+                  <RequireAuth>
+                    <Brands />
+                  </RequireAuth>
+                }
+              />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </Item>
+          <Item>
+            <Footer />
+          </Item>
+        </Stack>
+      </Container>
     </Router>
   );
 }
