@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./header/page_navigator/NavBar";
 import About from "./page/About";
@@ -17,18 +18,32 @@ import "@fontsource/roboto/700.css";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Item from "./Item";
+import { commerce } from "./lib/commerce.js";
+import {Products} from "./components";
+
+
 
 function App() {
   const { route } = useAuthenticator((context) => [context.route]);
-  console.log(route);
+  const [productsArray, setProducts] = useState([]);
+
+  const fetchProducts = async() =>{
+    const {data} = await commerce.products.list();
+    setProducts(data);
+  };
+
+  useEffect(()=>{
+    fetchProducts();
+  },[])
+
+  console.log(productsArray);
+
 
   return (
     <Router>
       <Container maxWidth="200vh" maxHeight="100vh">
         <Stack spacing={1}>
-          <Item>
-            <Navbar />
-          </Item>
+          <Navbar />
           <Item>
             <Routes>
               <Route
@@ -42,9 +57,7 @@ function App() {
               <Route
                 path="/shop"
                 element={
-                  <RequireAuth>
-                    <Shop />
-                  </RequireAuth>
+                    <Products productsList={productsArray}/>
                 }
               />
               <Route exact path="/" element={<Home />} />
